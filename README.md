@@ -193,7 +193,7 @@ Bu proje MIT Lisansı altında lisanslanmıştır - detaylar için [LICENSE](LIC
 
 ## 👨‍💻 Geliştirici
 
-**Projeniz** - [GitHub Profiliniz](https://github.com/KULLANICI_ADINIZ)
+**Projeniz** - (https://github.com/ahmetakifabus)
 
 ## 🙏 Teşekkürler
 
@@ -204,29 +204,12 @@ Bu proje MIT Lisansı altında lisanslanmıştır - detaylar için [LICENSE](LIC
 ## 📞 İletişim
 
 Sorularınız veya önerileriniz için:
-- 📧 Email: your.email@example.com
-- 🐛 Issues: [GitHub Issues](https://github.com/KULLANICI_ADINIZ/sinav-karne-analiz/issues)
-- 💬 Discussions: [GitHub Discussions](https://github.com/KULLANICI_ADINIZ/sinav-karne-analiz/discussions)
-
-## 📸 Ekran Görüntüleri
-
-### Ana Sayfa
-![Hero Section](screenshots/hero.png)
-
-### Dosya Yükleme
-![Upload Section](screenshots/upload.png)
-
-### Basit Regresyon Analizi
-![Simple Regression](screenshots/simple-regression.png)
-
-### Çoklu Regresyon Analizi
-![Multiple Regression](screenshots/multiple-regression.png)
-
-### Karşılaştırma Tablosu
-![Comparison](screenshots/comparison.png)
+- 📧 Email: ahmetakifabus91@gmail.com, rmzucar@gmail.com, bozdemiryusuf@gmail.com
 
 ---
 
 ⭐ Bu projeyi beğendiyseniz yıldız vermeyi unutmayın!
 
-**Yapım: 2025 | Eğitimde Veri Analizi**
+**Yapım: 2025 | AAİHL**
+
+
