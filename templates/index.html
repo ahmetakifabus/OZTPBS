@@ -256,87 +256,84 @@
                             d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
                     </svg>
                     Sonuçları ZIP İndir
-                </a>
-                <button onclick="cleanupAndReload()"
-                    class="bg-slate-800 text-slate-300 border border-slate-700 px-8 py-4 rounded-xl font-bold hover:bg-slate-700 transition">Yeni
-                    Analiz Başlat</button>
+
+            </div>
+            <div class="bg-slate-900 rounded-3xl shadow-4xl overflow-hidden p-6 border border-slate-800">
+                <img id="resultImage" src="" alt="Analiz Grafiği" class="w-full h-auto rounded-xl">
             </div>
         </div>
-        <div class="bg-slate-900 rounded-3xl shadow-4xl overflow-hidden p-6 border border-slate-800">
-            <img id="resultImage" src="" alt="Analiz Grafiği" class="w-full h-auto rounded-xl">
-        </div>
-    </div>
 
-    <footer class="bg-slate-950 border-t border-slate-900 text-slate-500 py-16">
-        <div class="max-w-7xl mx-auto px-6 text-center">
-            <h3 class="text-2xl font-black text-white mb-4">OZTPAS</h3>
-            <p class="text-slate-500 mb-8 max-w-md mx-auto">Modern eğitim verileri analitik çözümü. Öğrenci başarısını
-                veriye dayalı yönetin.</p>
-            <div class="flex justify-center gap-6 mb-8">
-                <a href="#" class="hover:text-white transition">Hakkında</a>
-                <a href="#" class="hover:text-white transition">Kılavuz</a>
-                <a href="#" class="hover:text-white transition">İletişim</a>
+        <footer class="bg-slate-950 border-t border-slate-900 text-slate-500 py-16">
+            <div class="max-w-7xl mx-auto px-6 text-center">
+                <h3 class="text-2xl font-black text-white mb-4">OZTPAS</h3>
+                <p class="text-slate-500 mb-8 max-w-md mx-auto">Modern eğitim verileri analitik çözümü. Öğrenci
+                    başarısını
+                    veriye dayalı yönetin.</p>
+                <div class="flex justify-center gap-6 mb-8">
+                    <a href="#" class="hover:text-white transition">Hakkında</a>
+                    <a href="#" class="hover:text-white transition">Kılavuz</a>
+                    <a href="#" class="hover:text-white transition">İletişim</a>
+                </div>
+                <p class="text-sm font-medium">© 2026 | MIT License | Made with ❤️</p>
             </div>
-            <p class="text-sm font-medium">© 2026 | MIT License | Made with ❤️</p>
-        </div>
-    </footer>
+        </footer>
 
-    <script>
-        function openModal() { document.getElementById('uploadModal').classList.add('active'); }
-        function closeModal() { document.getElementById('uploadModal').classList.remove('active'); }
+        <script>
+            function openModal() { document.getElementById('uploadModal').classList.add('active'); }
+            function closeModal() { document.getElementById('uploadModal').classList.remove('active'); }
 
-        function updateLabel(input, statusId) {
-            if (input.files && input.files[0]) {
-                document.getElementById(statusId).innerHTML = `<span class="text-green-600">Ok: ${input.files[0].name}</span>`;
+            function updateLabel(input, statusId) {
+                if (input.files && input.files[0]) {
+                    document.getElementById(statusId).innerHTML = `<span class="text-green-600">Ok: ${input.files[0].name}</span>`;
+                }
             }
-        }
 
-        function handleUpload(e) {
-            e.preventDefault();
-            const form = document.getElementById('uploadForm');
-            const data = new FormData(form);
+            function handleUpload(e) {
+                e.preventDefault();
+                const form = document.getElementById('uploadForm');
+                const data = new FormData(form);
 
-            document.getElementById('analyzeBtn').classList.add('hidden');
-            document.getElementById('loading').classList.remove('hidden');
+                document.getElementById('analyzeBtn').classList.add('hidden');
+                document.getElementById('loading').classList.remove('hidden');
 
-            fetch('/upload', {
-                method: 'POST',
-                body: data
-            })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.error) {
-                        throw new Error(data.error);
-                    }
-
-                    document.getElementById('loading').classList.add('hidden');
-                    closeModal();
-
-                    const img = document.getElementById('resultImage');
-                    img.src = data.image_url;
-
-                    document.getElementById('downloadZipBtn').href = '/download_zip';
-
-                    document.getElementById('results').classList.remove('hidden');
-                    document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+                fetch('/upload', {
+                    method: 'POST',
+                    body: data
                 })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert('Hata olustu:\n' + error.message);
-                    document.getElementById('loading').classList.add('hidden');
-                    document.getElementById('analyzeBtn').classList.remove('hidden');
-                });
-        }
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.error) {
+                            throw new Error(data.error);
+                        }
 
-        function cleanupAndReload() {
-            if (confirm("Tum sonuclar silinecek. Emin misiniz?")) {
-                fetch('/cleanup', { method: 'POST' })
-                    .then(() => window.location.reload());
+                        document.getElementById('loading').classList.add('hidden');
+                        closeModal();
+
+                        const img = document.getElementById('resultImage');
+                        img.src = data.image_url;
+
+                        document.getElementById('downloadZipBtn').href = '/download_zip';
+
+                        document.getElementById('results').classList.remove('hidden');
+                        document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('Hata olustu:\n' + error.message);
+                        document.getElementById('loading').classList.add('hidden');
+                        document.getElementById('analyzeBtn').classList.remove('hidden');
+                    });
             }
-        }
 
-        // Cleanup listener removed to prevent download failures 
-    </script>
+            function cleanupAndReload() {
+                if (confirm("Tum sonuclar silinecek. Emin misiniz?")) {
+                    fetch('/cleanup', { method: 'POST' })
+                        .then(() => window.location.reload());
+                }
+            }
+
+            // Cleanup listener removed to prevent download failures 
+        </script>
 </body>
 
 </html>
