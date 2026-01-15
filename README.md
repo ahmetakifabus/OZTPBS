@@ -1,4 +1,4 @@
-# 📊 OZTPHS - Öğrenci Z ve T Puanı Hesaplama Sistemi
+# 📊 OZTPAS - Öğrenci Z ve T Puanı Hesaplama Sistemi
 
 Modern ve interaktif bir web uygulamasi ile ogrenci sinav ve karne notlari arasindaki iliskiyi analiz edin. Gelismis istatistiksel yontemler ve gorsel analizlerle egitim verilerinizi anlayin.
 
