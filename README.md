@@ -165,4 +165,4 @@ Sorulariniz veya onerileriniz icin:
 
 Bu projeyi begendiyseniz yildiz vermeyi unutmayin!
 
-**Yapim: 2025 | AAIHL 🏗️**
+Made with ❤️
