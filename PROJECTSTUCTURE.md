@@ -1,77 +1,75 @@
-# 📁 Proje Yapısı
+# Proje Yapisi
 
-Bu dosya, projenizin klasör ve dosya yapısını gösterir.
+Bu dosya, projenizin klasor ve dosya yapisini gosterir.
 
-## 🗂️ Dizin Yapısı
+## Dizin Yapisi
 
 ```
 sinav-karne-analiz/
 │
-├── index.html                 # Ana web sayfası
-├── README.md                  # Proje açıklaması ve dokümantasyon
-├── LICENSE                    # MIT Lisans dosyası
-├── .gitignore                # Git'in göz ardı edeceği dosyalar
-├── PROJE_YAPISI.md           # Bu dosya
+├── index.html                 
+├── README.md                  
+├── LICENSE                    
+├── .gitignore                
+├── PROJE_YAPISI.md           
 │
-├── data/                     # Örnek veri dosyaları
-│   ├── examples/             # Örnek CSV dosyaları
+├── data/                     
+│   ├── examples/             
 │   │   ├── sinav_ornek.csv
 │   │   └── karne_ornek.csv
-│   └── templates/            # Boş şablon dosyaları
+│   └── templates/            
 │       ├── sinav_template.csv
 │       └── karne_template.csv
 │
-├── docs/                     # Dokümantasyon
+├── docs/                     
 │   ├── kullanim-kilavuzu.md
 │   ├── csv-format.md
 │   └── analiz-yontemleri.md
 │
-├── screenshots/              # Ekran görüntüleri (README için)
+├── screenshots/              
 │   ├── hero.png
 │   ├── upload.png
 │   ├── simple-regression.png
 │   ├── multiple-regression.png
 │   └── comparison.png
 │
-└── assets/                   # Ek kaynaklar (opsiyonel)
+└── assets/                   
     ├── logo.png
     └── favicon.ico
 ```
 
-## 📄 Dosya Açıklamaları
+## Dosya Aciklamalari
 
 ### Ana Dosyalar
 
-- **index.html**: Tüm uygulamayı içeren tek HTML dosyası. CSS ve JavaScript dahil.
-- **README.md**: Projenin kapsamlı açıklaması, kullanım talimatları ve özellikler.
+- **index.html**: Tum uygulamayi iceren tek HTML dosyasi. CSS ve JavaScript dahil.
+- **README.md**: Projenin kapsamli aciklamasi, kullanim talimatlari ve ozellikler.
 - **LICENSE**: MIT lisans metni.
-- **.gitignore**: Git'in takip etmeyeceği dosya ve klasörlerin listesi.
+- **.gitignore**: Git'in takip etmeyecegi dosya ve klasorlerin listesi.
 
-### Data Klasörü
+### Data Klasoru
 
 #### examples/
-Kullanıcılara örnek olması için hazır veri setleri:
+Kullanicilara ornek olmasi icin hazir veri setleri:
 
-**sinav_ornek.csv** (30 öğrenci):
+**sinav_ornek.csv** (30 ogrenci):
 ```csv
 RUMUZ;TDS;MDS;FDS;SDS;DDS
 OGR001;85;90;78;88;92
 OGR002;75;82;85;79;88
 OGR003;92;88;90;85;90
-...
 ```
 
-**karne_ornek.csv** (30 öğrenci):
+**karne_ornek.csv** (30 ogrenci):
 ```csv
 RUMUZ;TURKCE;MAT;FEN;SOSYAL;DIN
 OGR001;4,5;4,8;4,2;4,6;4,9
 OGR002;3,8;4,1;4,3;3,9;4,4
 OGR003;4,7;4,5;4,6;4,3;4,6
-...
 ```
 
 #### templates/
-Kullanıcıların kendi verilerini girebilmeleri için boş şablonlar:
+Kullanicilarin kendi verilerini girebilmeleri icin bos sablonlar:
 
 **sinav_template.csv**:
 ```csv
@@ -87,100 +85,82 @@ OGR001;;;;;;;
 OGR002;;;;;;;
 ```
 
-### Docs Klasörü
+### Docs Klasoru
 
-Detaylı dokümantasyon dosyaları:
+Detayli dokumantasyon dosyalari:
 
-- **kullanim-kilavuzu.md**: Adım adım kullanım talimatları
-- **csv-format.md**: CSV dosya formatı detayları
-- **analiz-yontemleri.md**: İstatistiksel yöntemlerin açıklaması
+- **kullanim-kilavuzu.md**: Adim adim kullanim talimatlari
+- **csv-format.md**: CSV dosya formati detaylari
+- **analiz-yontemleri.md**: Istatistiksel yontemlerin aciklamasi
 
-### Screenshots Klasörü
+### Screenshots Klasoru
 
-README.md dosyasında kullanılacak ekran görüntüleri:
+README.md dosyasinda kullanilacak ekran goruntuleri:
 
-- **hero.png**: Ana sayfa görünümü
-- **upload.png**: Dosya yükleme ekranı
+- **hero.png**: Ana sayfa gorunumu
+- **upload.png**: Dosya yukleme ekrani
 - **simple-regression.png**: Basit regresyon analizi
-- **multiple-regression.png**: Çoklu regresyon analizi
-- **comparison.png**: Karşılaştırma tablosu
+- **multiple-regression.png**: Coklu regresyon analizi
+- **comparison.png**: Karsilastirma tablosu
 
-### Assets Klasörü (Opsiyonel)
+### Assets Klasoru
 
-Ek görsel kaynaklar:
+Ek gorsel kaynaklar:
 
 - **logo.png**: Proje logosu
-- **favicon.ico**: Tarayıcı sekmesi ikonu
+- **favicon.ico**: Tarayici sekmesi ikonu
 
-## 🚀 Kurulum Adımları
+## Kurulum Adimlari
 
-### 1. Repository Oluşturma
+### 1. Repository Olusturma
 
 ```bash
-# GitHub'da yeni repo oluşturun
-# Sonra local'de:
-
 mkdir sinav-karne-analiz
 cd sinav-karne-analiz
 git init
 ```
 
-### 2. Dosyaları Ekleme
+### 2. Dosyalari Ekleme
 
 ```bash
-# Ana dosyaları ekleyin
 touch index.html README.md LICENSE .gitignore
-
-# Klasörleri oluşturun
 mkdir -p data/examples data/templates docs screenshots assets
-
-# Örnek dosyaları oluşturun
 touch data/examples/sinav_ornek.csv
 touch data/examples/karne_ornek.csv
 touch data/templates/sinav_template.csv
 touch data/templates/karne_template.csv
-
-# Dokümantasyon dosyaları
 touch docs/kullanim-kilavuzu.md
 touch docs/csv-format.md
 touch docs/analiz-yontemleri.md
 ```
 
-### 3. Git İşlemleri
+### 3. Git Islemleri
 
 ```bash
-# Dosyaları stage'e ekle
 git add .
-
-# Commit
-git commit -m "İlk commit: Proje yapısı oluşturuldu"
-
-# Remote repo ekle
+git commit -m "Ilk commit: Proje yapisi olusturuldu"
 git remote add origin https://github.com/KULLANICI_ADINIZ/sinav-karne-analiz.git
-
-# Push
 git push -u origin main
 ```
 
 ### 4. GitHub Pages Aktivasyonu
 
-1. GitHub repo sayfanıza gidin
+1. GitHub repo sayfaniza gidin
 2. Settings > Pages
-3. Source: "Deploy from a branch" seçin
-4. Branch: "main" ve "/ (root)" seçin
-5. Save'e tıklayın
+3. Source: "Deploy from a branch" secin
+4. Branch: "main" ve "/ (root)" secin
+5. Save'e tiklayin
 6. 2-3 dakika bekleyin
-7. `https://KULLANICI_ADINIZ.github.io/sinav-karne-analiz/` adresinde siteniz yayında!
+7. Siteniz yayinda!
 
-## 📝 Örnek Veri Setleri Oluşturma
+## Ornek Veri Setleri Olusturma
 
-### Python ile Otomatik Veri Üretme
+### Python ile Otomatik Veri Uretme
 
 ```python
 import pandas as pd
 import numpy as np
 
-# Sınav verileri
 np.random.seed(42)
 n_students = 30
 
@@ -196,7 +176,6 @@ sinav_data = {
 sinav_df = pd.DataFrame(sinav_data)
 sinav_df.to_csv('data/examples/sinav_ornek.csv', sep=';', index=False)
 
-# Karne verileri (sınav ile korelasyonlu)
 karne_data = {
     'RUMUZ': [f'OGR{i:03d}' for i in range(1, n_students + 1)],
     'TURKCE': (sinav_df['TDS'] / 20 + np.random.normal(0, 0.2, n_students)).round(1),
@@ -209,23 +188,21 @@ karne_data = {
 karne_df = pd.DataFrame(karne_data)
 karne_df.to_csv('data/examples/karne_ornek.csv', sep=';', index=False, decimal=',')
 
-print("✅ Örnek veriler oluşturuldu!")
+print("Ornek veriler olusturuldu!")
 ```
 
-## 🎯 Minimum Gerekli Dosyalar
+## Minimum Gerekli Dosyalar
 
-GitHub Pages'de yayınlamak için sadece şu dosyalar yeterlidir:
+GitHub Pages'de yayinlamak icin sadece su dosyalar yeterlidir:
 
 ```
 sinav-karne-analiz/
-├── index.html      # ZORUNLU
-├── README.md       # Önerilen
-└── LICENSE         # Önerilen
+├── index.html      
+├── README.md       
+└── LICENSE         
 ```
 
-Diğer tüm dosyalar ve klasörler opsiyoneldir!
-
-## 📊 Gelişmiş Yapı (Gelecek Geliştirmeler İçin)
+## Gelismis Yapi
 
 ```
 sinav-karne-analiz/
@@ -244,25 +221,22 @@ sinav-karne-analiz/
 └── package.json
 ```
 
-## 🔄 Güncelleme Süreci
+## Guncelleme Sureci
 
 ```bash
-# Değişiklik yap
 git add .
-git commit -m "Yeni özellik: ..."
+git commit -m "Yeni ozellik"
 git push origin main
-
-# GitHub Pages otomatik güncellenir (30-60 saniye)
 ```
 
-## ✨ Pro İpuçları
+## Ipuclari
 
-1. **Branches Kullanın**: Ana kodunuzu `main`'de tutun, yeni özellikler için `feature` branch'leri oluşturun
-2. **Issues Açın**: Her geliştirme için GitHub issue oluşturun
-3. **Pull Request**: Değişiklikleri PR ile merge edin
-4. **README Güncel Tutun**: Her yeni özellik eklendiğinde README'yi güncelleyin
-5. **Screenshots Ekleyin**: Görsel dokümantasyon kullanıcı deneyimini artırır
+1. Ana kodunuzu main'de tutun, yeni ozellikler icin feature branch'leri olusturun
+2. Her gelistirme icin GitHub issue olusturun
+3. Degisiklikleri PR ile merge edin
+4. Her yeni ozellik eklendiginde README'yi guncelleyin
+5. Gorsel dokumantasyon kullanici deneyimini artirir
 
 ---
 
-Bu yapı ile projeniz profesyonel ve organize görünecek! 🚀
+Bu yapi ile projeniz profesyonel ve organize gorunecek!

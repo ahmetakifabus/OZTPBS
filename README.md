@@ -1,78 +1,36 @@
-# 📊 Sınav-Karne Analiz Platformu
+# Sinav-Karne Analiz Platformu
 
-Modern ve interaktif bir web uygulaması ile öğrenci sınav ve karne notları arasındaki ilişkiyi analiz edin. Gelişmiş istatistiksel yöntemler ve görsel analizlerle eğitim verilerinizi anlayın.
+Modern ve interaktif bir web uygulamasi ile ogrenci sinav ve karne notlari arasindaki iliskiyi analiz edin. Gelismis istatistiksel yontemler ve gorsel analizlerle egitim verilerinizi anlayin.
 
-## ✨ Özellikler
+## Ozellikler
 
-### 📈 İstatistiksel Analizler
-- **Basit Regresyon Analizi**: Her ders için tekli değişken analizi
-- **Çoklu Regresyon Analizi**: Tüm dersleri birlikte değerlendirerek gelişmiş tahminler
-- **T-Puanı Dönüşümü**: Standartlaştırılmış puanlarla adil karşılaştırma
-- **R² ve RMSE Metrikleri**: Model performansını ölçün
+### Istatistiksel Analizler
+- **Basit Regresyon Analizi**: Her ders icin tekli degisken analizi
+- **Coklu Regresyon Analizi**: Tum dersleri birlikte degerlendirerek gelismis tahminler
+- **T-Puani Donusumu**: Standartlastirilmis puanlarla adil karsilastirma
+- **R2 ve RMSE Metrikleri**: Model performansini olcun
 
-### 📊 Görselleştirmeler
-- **İnteraktif Grafikler**: Plotly.js ile dinamik scatter plot'lar
-- **Bar Chart'lar**: Katsayı analizi ve karşılaştırmalar
-- **Gerçek Zamanlı Güncellemeler**: Anında sonuç görüntüleme
-- **Responsive Tasarım**: Tüm cihazlarda mükemmel görünüm
+### Gorsellestirmeler
+- **Interaktif Grafikler**: Plotly.js ile dinamik scatter plot'lar
+- **Bar Chart'lar**: Katsayi analizi ve karsilastirmalar
+- **Gercek Zamanli Guncellemeler**: Aninda sonuc goruntuleme
+- **Responsive Tasarim**: Tum cihazlarda mukemmel gorunum
 
-### 💾 Veri Yönetimi
-- **CSV Dosya Desteği**: Kolay veri yükleme
-- **Sonuç İndirme**: Analiz sonuçlarını CSV olarak kaydedin
-- **Tarayıcı Tabanlı**: Sunucu gerektirmez, tüm işlemler istemci tarafında
+### Veri Yonetimi
+- **CSV Dosya Destegi**: Kolay veri yukleme
+- **Sonuc Indirme**: Analiz sonuclarini CSV olarak kaydedin
+- **Tarayici Tabanli**: Sunucu gerektirmez, tum islemler istemci tarafinda
 
-### 🎨 Modern Arayüz
-- **Gradient Tasarım**: Göz alıcı renkler ve geçişler
-- **Smooth Animasyonlar**: Akıcı kullanıcı deneyimi
-- **Dark Mode Hazır**: Koyu tema desteği
-- **Emoji İkonlar**: Görsel zenginlik
+### Modern Arayuz
+- **Gradient Tasarim**: Goz alici renkler ve gecisler
+- **Smooth Animasyonlar**: Akici kullanici deneyimi
+- **Dark Mode Hazir**: Koyu tema destegi
 
-## 🚀 Hızlı Başlangıç
+## Hizli Baslangic
 
-### GitHub Pages ile Yayınlama
+## CSV Dosya Formati
 
-1. **Repository Oluşturun**
-   ```bash
-   git clone https://github.com/KULLANICI_ADINIZ/sinav-karne-analiz.git
-   cd sinav-karne-analiz
-   ```
-
-2. **Dosyaları Ekleyin**
-   - `index.html` dosyasını root dizine yerleştirin
-   - CSV örnek dosyalarınızı `data/` klasörüne ekleyin (opsiyonel)
-
-3. **GitHub'a Yükleyin**
-   ```bash
-   git add .
-   git commit -m "İlk commit: Analiz platformu eklendi"
-   git push origin main
-   ```
-
-4. **GitHub Pages'i Aktif Edin**
-   - Repository > Settings > Pages
-   - Source: `Deploy from a branch`
-   - Branch: `main` / `root`
-   - Save
-
-5. **Siteniz Hazır!**
-   - `https://KULLANICI_ADINIZ.github.io/sinav-karne-analiz/`
-
-### Lokal Kullanım
-
-Basitçe `index.html` dosyasını tarayıcınızda açın:
-
-```bash
-# Dosyayı doğrudan açın
-open index.html
-
-# veya basit bir HTTP sunucu başlatın
-python -m http.server 8000
-# Tarayıcıda: http://localhost:8000
-```
-
-## 📁 CSV Dosya Formatı
-
-### Sınav Dosyası (sinav.csv)
+### Sinav Dosyasi (sinav.csv)
 ```csv
 RUMUZ;TDS;MDS;FDS;SDS;DDS
 OGR001;85;90;78;88;92
@@ -80,15 +38,15 @@ OGR002;75;82;85;79;88
 OGR003;92;88;90;85;90
 ```
 
-**Sütunlar:**
-- `RUMUZ`: Öğrenci kimlik numarası
-- `TDS`: Türkçe sınav puanı
-- `MDS`: Matematik sınav puanı
-- `FDS`: Fen sınav puanı
-- `SDS`: Sosyal sınav puanı
-- `DDS`: Din sınav puanı
+**Sutunlar:**
+- `RUMUZ`: Ogrenci kimlik numarasi
+- `TDS`: Turkce sinav puani
+- `MDS`: Matematik sinav puani
+- `FDS`: Fen sinav puani
+- `SDS`: Sosyal sinav puani
+- `DDS`: Din sinav puani
 
-### Karne Dosyası (karne.csv)
+### Karne Dosyasi (karne.csv)
 ```csv
 RUMUZ;TURKCE;MAT;FEN;SOSYAL;DIN
 OGR001;4,5;4,8;4,2;4,6;4,9
@@ -96,120 +54,117 @@ OGR002;3,8;4,1;4,3;3,9;4,4
 OGR003;4,7;4,5;4,6;4,3;4,6
 ```
 
-**Sütunlar:**
-- `RUMUZ`: Öğrenci kimlik numarası (sınav dosyası ile eşleşmeli)
-- `TURKCE`: Türkçe karne notu
+**Sutunlar:**
+- `RUMUZ`: Ogrenci kimlik numarasi (sinav dosyasi ile eslesmeli)
+- `TURKCE`: Turkce karne notu
 - `MAT`: Matematik karne notu
 - `FEN`: Fen karne notu
 - `SOSYAL`: Sosyal karne notu
 - `DIN`: Din karne notu
 
-**Not:** Karne notları ondalık ayırıcı olarak virgül (`,`) kullanır.
+**Not:** Karne notlari ondalik ayirici olarak virgul (`,`) kullanir.
 
-## 🎯 Kullanım
+## Kullanim
 
-1. **Dosya Yükleme**
-   - Sınav CSV dosyanızı yükleyin
-   - Karne CSV dosyanızı yükleyin
-   - Her iki dosya yüklendikten sonra "Analizi Başlat" butonu aktif olur
+1. **Dosya Yukleme**
+   - Sinav CSV dosyanizi yukleyin
+   - Karne CSV dosyanizi yukleyin
+   - Her iki dosya yuklendikten sonra "Analizi Baslat" butonu aktif olur
 
 2. **Analiz**
-   - "Analizi Başlat" butonuna tıklayın
-   - Platform otomatik olarak T-puanı dönüşümü yapar
-   - Basit ve çoklu regresyon analizleri hesaplanır
+   - "Analizi Baslat" butonuna tiklayin
+   - Platform otomatik olarak T-puani donusumu yapar
+   - Basit ve coklu regresyon analizleri hesaplanir
 
-3. **Sonuçları İnceleme**
-   - **Basit Regresyon**: Her ders için scatter plot ve R² değerleri
-   - **Çoklu Regresyon**: Tüm derslerin birlikte değerlendirilmesi, katsayı grafikleri
-   - **Karşılaştırma**: Detaylı tablo ve karşılaştırma grafikleri
+3. **Sonuclari Inceleme**
+   - **Basit Regresyon**: Her ders icin scatter plot ve R2 degerleri
+   - **Coklu Regresyon**: Tum derslerin birlikte degerlendirilmesi, katsayi grafikleri
+   - **Karsilastirma**: Detayli tablo ve karsilastirma grafikleri
 
-4. **Sonuç İndirme**
-   - "Sonuçları İndir (CSV)" butonu ile analiz sonuçlarını kaydedin
-   - Excel'de açıp daha detaylı incelemeler yapın
+4. **Sonuc Indirme**
+   - "Sonuclari Indir (CSV)" butonu ile analiz sonuclarini kaydedin
+   - Excel'de acip daha detayli incelemeler yapin
 
-## 🛠️ Teknolojiler
+## Teknolojiler
 
-- **HTML5**: Yapı ve içerik
-- **Tailwind CSS**: Modern ve responsive tasarım
-- **Vanilla JavaScript**: Tüm hesaplamalar ve mantık
-- **Plotly.js**: İnteraktif grafikler ve görselleştirmeler
-- **No Backend**: Tamamen istemci tabanlı, sunucu gerektirmez
+- **HTML5**: Yapi ve icerik
+- **Tailwind CSS**: Modern ve responsive tasarim
+- **Vanilla JavaScript**: Tum hesaplamalar ve mantik
+- **Plotly.js**: Interaktif grafikler ve gorsellestirmeler
 
-## 📊 Analiz Yöntemleri
+## Analiz Yontemleri
 
-### T-Puanı Dönüşümü
-Farklı ölçeklerdeki notları standartlaştırır:
+### T-Puani Donusumu
+Farkli olceklerdeki notlari standartlastirir:
 ```
-T = 50 + 10 * ((X - μ) / σ)
+T = 50 + 10 * ((X - mu) / sigma)
 ```
-- μ: Ortalama
-- σ: Standart sapma
-- Sonuç: Ortalama 50, standart sapma 10
+- mu: Ortalama
+- sigma: Standart sapma
+- Sonuc: Ortalama 50, standart sapma 10
 
 ### Basit Lineer Regresyon
-Her ders için:
+Her ders icin:
 ```
-Y = β₀ + β₁X + ε
+Y = beta0 + beta1X + epsilon
 ```
-- Y: Karne T-puanı
-- X: Sınav T-puanı
-- β₀: Kesme noktası
-- β₁: Eğim
+- Y: Karne T-puani
+- X: Sinav T-puani
+- beta0: Kesme noktasi
+- beta1: Egim
 
-### Çoklu Lineer Regresyon
-Tüm dersler birlikte:
+### Coklu Lineer Regresyon
+Tum dersler birlikte:
 ```
-Y = β₀ + β₁X₁ + β₂X₂ + ... + β₅X₅ + ε
+Y = beta0 + beta1X1 + beta2X2 + ... + beta5X5 + epsilon
 ```
-- X₁...X₅: Tüm derslerin sınav T-puanları
+- X1...X5: Tum derslerin sinav T-puanlari
 
-### Model Değerlendirme
-- **R²**: Modelin açıkladığı varyans oranı (0-1)
-- **RMSE**: Ortalama hata (düşük = iyi)
+### Model Degerlendirme
+- **R2**: Modelin acikladigi varyans orani (0-1)
+- **RMSE**: Ortalama hata (dusuk = iyi)
 
-## 🤝 Katkıda Bulunma
+## Katkida Bulunma
 
-Katkılarınızı bekliyoruz! Lütfen şu adımları izleyin:
+Katkilarinizi bekliyoruz! Lutfen su adimlari izleyin:
 
 1. Bu repo'yu fork edin
-2. Feature branch oluşturun (`git checkout -b feature/harika-ozellik`)
-3. Değişikliklerinizi commit edin (`git commit -m 'Harika özellik eklendi'`)
+2. Feature branch olusturun (`git checkout -b feature/harika-ozellik`)
+3. Degisikliklerinizi commit edin (`git commit -m 'Harika ozellik eklendi'`)
 4. Branch'inizi push edin (`git push origin feature/harika-ozellik`)
-5. Pull Request açın
+5. Pull Request acin
 
-### Geliştirme Fikirleri
-- [ ] Excel dosya desteği ekle
-- [ ] PDF rapor oluşturma
+### Gelistirme Fikirleri
+- [ ] Excel dosya destegi ekle
+- [ ] PDF rapor olusturma
 - [ ] Daha fazla istatistiksel test
 - [ ] Veri filtreleme ve arama
-- [ ] Koyu tema seçeneği
-- [ ] Çoklu dil desteği
-- [ ] Öğrenci bazlı detaylı analiz
+- [ ] Koyu tema secenegi
+- [ ] Coklu dil destegi
+- [ ] Ogrenci bazli detayli analiz
 - [ ] Zaman serisi analizi
 
-## 📄 Lisans
+## Lisans
 
-Bu proje MIT Lisansı altında lisanslanmıştır - detaylar için [LICENSE](LICENSE) dosyasına bakın.
+Bu proje MIT Lisansi altinda lisanslanmistir - detaylar icin [LICENSE](LICENSE) dosyasina bakin.
 
-## 👨‍💻 Geliştirici
+## Gelistirici
 
-**Projeniz** - (https://github.com/ahmetakifabus)
+**Proje:** - (https://github.com/ahmetakifabus)
 
-## 🙏 Teşekkürler
+## Tesekkurler
 
-- [Tailwind CSS](https://tailwindcss.com/) - Harika CSS framework'ü için
-- [Plotly.js](https://plotly.com/javascript/) - Güçlü görselleştirme kütüphanesi için
-- [Google Fonts](https://fonts.google.com/) - Inter font ailesi için
+- [Tailwind CSS](https://tailwindcss.com/) - Harika CSS framework'u icin
+- [Plotly.js](https://plotly.com/javascript/) - Guclu gorsellestirme kutuphanesi icin
+- [Google Fonts](https://fonts.google.com/) - Inter font ailesi icin
 
-## 📞 İletişim
+## Iletisim
 
-Sorularınız veya önerileriniz için:
-- 📧 Email: ahmetakifabus91@gmail.com, rmzucar@gmail.com, bozdemiryusuf@gmail.com
+Sorulariniz veya onerileriniz icin:
+- Email: ahmetakifabus91@proton.me, rmzucar@gmail.com, bozdemiryusuf@gmail.com
 
 ---
 
-⭐ Bu projeyi beğendiyseniz yıldız vermeyi unutmayın!
+Bu projeyi begendiyseniz yildiz vermeyi unutmayin!
 
-**Yapım: 2025 | AAİHL**
-
-
+**Yapim: 2025 | AAIHL**

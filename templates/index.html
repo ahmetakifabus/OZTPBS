@@ -14,30 +14,32 @@
         }
 
         .gradient-bg {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
         }
 
         .card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
         }
 
         .btn-primary:hover {
             transform: scale(1.05);
+            opacity: 0.9;
         }
 
         .upload-zone {
-            border: 3px dashed #667eea;
+            border: 2px dashed #4f46e5;
             cursor: pointer;
+            transition: all 0.3s ease;
         }
 
         .upload-zone:hover {
-            border-color: #764ba2;
-            background: rgba(102, 126, 234, 0.05);
+            border-color: #818cf8;
+            background: rgba(79, 70, 229, 0.1);
         }
 
         @keyframes spin {
@@ -51,11 +53,11 @@
         }
 
         .spinner {
-            border: 8px solid #f3f4f6;
-            border-top: 8px solid #8B5CF6;
+            border: 6px solid #1e293b;
+            border-top: 6px solid #6366f1;
             border-radius: 50%;
-            width: 80px;
-            height: 80px;
+            width: 60px;
+            height: 60px;
             animation: spin 1s linear infinite;
             margin: 0 auto;
         }
@@ -67,7 +69,8 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(4px);
             z-index: 1000;
         }
 
@@ -79,144 +82,200 @@
     </style>
 </head>
 
-<body class="bg-gray-50 flex flex-col min-h-screen">
-    <!-- Top Bar for Links -->
-    <div class="bg-white border-b border-gray-200 py-3 shadow-sm sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
-            <span class="font-black text-2xl text-purple-700">OZTPBS</span>
-            <div class="flex gap-4">
-                <a href="https://github.com/ahmetakifabus/OZTPBS" target="_blank"
-                    class="bg-black text-white px-4 py-2 rounded-lg font-bold hover:bg-gray-800 transition flex items-center gap-2 text-sm shadow-md"
-                    style="background-color: #000 !important; color: #fff !important;">
-                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                        <path
-                            d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-                    </svg>
-                    GitHub Project
-                </a>
-                <a href="https://drive.proton.me/urls/K6KTE46DZ0#81fCwCnmSJov" target="_blank"
-                    class="bg-blue-600 text-white px-4 py-2 rounded-lg font-bold hover:bg-blue-700 transition flex items-center gap-2 text-sm shadow-md"
-                    style="background-color: #2563eb !important; color: #fff !important;">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z">
-                        </path>
-                    </svg>
-                    Proton Drive (Project)
-                </a>
-            </div>
+<body class="bg-[#0f172a] text-slate-200 flex flex-col min-h-screen">
+    <div class="gradient-bg text-white py-32 relative overflow-hidden">
+        <div
+            class="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-indigo-500 via-transparent to-transparent">
         </div>
-    </div>
-    <div class="gradient-bg text-white flex-grow flex flex-col justify-center">
-        <div class="max-w-7xl mx-auto px-6 py-20 text-center">
-            <h1 class="text-6xl font-black mb-4">OZTPBS</h1>
-            <p class="text-2xl text-purple-100 mb-12">Öğrenci Z ve T Puanı Bulma Sistemi</p>
-
-            <div class="flex justify-center mb-12">
-                <button onclick="openModal()"
-                    class="bg-white text-purple-700 hover:bg-purple-50 px-12 py-5 rounded-full font-bold hover:scale-105 transition shadow-2xl text-3xl border-4 border-white">
-                    Analize Başla
-                </button>
-            </div>
+        <div class="max-w-7xl mx-auto px-6 text-center relative z-10">
+            <h1 class="text-7xl font-black mb-6 tracking-tight">OZTPBS</h1>
+            <p class="text-3xl text-indigo-200 mb-10 font-medium">Öğrenci Z ve T Puanı Bulma Sistemi</p>
+            <button onclick="openModal()"
+                class="bg-emerald-500 text-white px-10 py-5 rounded-full font-extrabold text-xl shadow-lg shadow-emerald-900/20 hover:scale-105 transition-all">Analize
+                Başla</button>
         </div>
     </div>
 
-    <!-- Modal -->
+    <div class="max-w-7xl mx-auto px-6 py-24">
+        <div class="grid md:grid-cols-2 gap-16 items-center mb-24">
+            <div>
+                <h2 class="text-4xl font-black text-white mb-6">Projeyi Tanıyın</h2>
+                <p class="text-lg text-slate-400 leading-relaxed mb-6">
+                    OZTPBS, modern eğitim analiz yöntemlerini kullanarak öğrenci başarısını derinlemesine inceleyen bir
+                    platformdur.
+                    Sadece ham puanlara bakmak yerine, öğrencilerin genel içindeki gerçek konumlarını ve dersler arası
+                    etkileşimleri
+                    bilimsel modellerle analiz eder.
+                </p>
+                <div class="space-y-4">
+                    <div class="flex items-start gap-4">
+                        <div class="bg-indigo-500/10 p-2 rounded-lg text-indigo-400">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-white">İstatistiksel Standartlaştırma</h4>
+                            <p class="text-slate-400">T-puanı dönüşümü ile farklı zorluktaki sınavları adilce
+                                karşılaştırır.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-slate-900/50 border border-slate-800 p-8 rounded-3xl shadow-3xl">
+                <div class="mb-8">
+                    <h3 class="text-xl font-bold text-indigo-400 mb-2">T-Puanı Nedir?</h3>
+                    <p class="text-slate-400 text-sm">
+                        Ortalamayı 50, standart sapmayı 10 olarak kabul eden bir standart puan türüdür.
+                        Öğrencinin bir dersteki başarısının diğer öğrencilere göre nerede olduğunu gösterir.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold text-emerald-400 mb-2">Neden Regresyon?</h3>
+                    <p class="text-slate-400 text-sm">
+                        Sınav sonuçları ile karne notları arasındaki ilişkiyi matematiksel bir modele döker.
+                        Çoklu regresyon ile bir öğrencinin başarısını tüm derslerin etkisini dikkate alarak tahmin eder.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8 mb-24">
+            <div class="bg-slate-900 border border-slate-800 p-8 rounded-2xl card transition-all">
+                <div class="text-indigo-500 text-2xl font-bold mb-4">Grafik</div>
+                <h3 class="text-xl font-bold text-white mb-3">Hassas Analiz</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">Basit ve çoklu regresyon modelleri ile verilerinizi
+                    işler, R² ve RMSE metrikleri ile model güvenilirliğini raporlar.</p>
+            </div>
+            <div class="bg-slate-900 border border-slate-800 p-8 rounded-2xl card transition-all">
+                <div class="text-emerald-500 text-2xl font-bold mb-4">Rapor</div>
+                <h3 class="text-xl font-bold text-white mb-3">Görsel Raporlama</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">Matematiksel sonuçları etkileyici grafiklere
+                    dönüştürür. Scatter plot ve katsayı analizleri ile veriyi görünür kılar.</p>
+            </div>
+            <div class="bg-slate-900 border border-slate-800 p-8 rounded-2xl card transition-all">
+                <div class="text-purple-500 text-2xl font-bold mb-4">Kilit</div>
+                <h3 class="text-xl font-bold text-white mb-3">Güvenli Veri</h3>
+                <p class="text-slate-400 text-sm leading-relaxed">Tüm analizler anonim rumuzlar üzerinden yapılır.
+                    Kişisel veriler korunur ve her kullanıcı için özel bir alan sunulur.</p>
+            </div>
+        </div>
+
+        <div class="bg-indigo-900/10 border border-indigo-500/20 rounded-3xl p-12 mb-24">
+            <h2 class="text-3xl font-black text-white text-center mb-12">Nasıl Çalışır?</h2>
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div
+                        class="w-12 h-12 bg-indigo-600 text-white rounded-full flex items-center justify-center font-bold mx-auto mb-4 text-xl">
+                        1</div>
+                    <h4 class="font-bold text-white mb-2">Veri Hazırlama</h4>
+                    <p class="text-slate-400 text-sm">Sınav ve karne notlarınızı CSV formatında hazırlayın.</p>
+                </div>
+                <div class="text-center">
+                    <div
+                        class="w-12 h-12 bg-indigo-600 text-white rounded-full flex items-center justify-center font-bold mx-auto mb-4 text-xl">
+                        2</div>
+                    <h4 class="font-bold text-white mb-2">Dosya Yükleme</h4>
+                    <p class="text-slate-400 text-sm">Sistem üzerinden dosyalarınızı güvenle yükleyin.</p>
+                </div>
+                <div class="text-center">
+                    <div
+                        class="w-12 h-12 bg-indigo-600 text-white rounded-full flex items-center justify-center font-bold mx-auto mb-4 text-xl">
+                        3</div>
+                    <h4 class="font-bold text-white mb-2">Motor Analizi</h4>
+                    <p class="text-slate-400 text-sm">Python tabanlı motorumuz T-puanlarını ve regresyonu hesaplar.</p>
+                </div>
+                <div class="text-center">
+                    <div
+                        class="w-12 h-12 bg-indigo-600 text-white rounded-full flex items-center justify-center font-bold mx-auto mb-4 text-xl">
+                        4</div>
+                    <h4 class="font-bold text-white mb-2">Sonuçları Al</h4>
+                    <p class="text-slate-400 text-sm">Grafikleri inceleyin ve detaylı CSV raporunu indirin.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div id="uploadModal" class="modal">
-        <div class="bg-white rounded-2xl shadow-2xl max-w-4xl w-full mx-4 p-8">
-            <div class="flex justify-between items-center mb-6">
-                <h2 class="text-3xl font-black text-gray-800">Dosya Yükleme</h2>
-                <button onclick="closeModal()" class="text-gray-500 hover:text-gray-700 text-3xl">&times;</button>
+        <div class="bg-slate-900 rounded-3xl shadow-3xl max-w-4xl w-full mx-4 p-10 border border-slate-800">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-3xl font-black text-white">Dosya Yükleme</h2>
+                <button onclick="closeModal()"
+                    class="text-slate-500 hover:text-white text-4xl transition">&times;</button>
             </div>
-
-            <p class="text-center text-lg text-gray-700 mb-8 font-semibold">
-                Lütfen Sınav (TDS, MDS...) ve Karne (TURKCE, MAT...) CSV dosyalarınızı yükleyin.
+            <p class="text-center text-lg text-slate-300 mb-10 font-medium">
+                Sınav ve Karne verilerini içeren CSV dosyalarını seçin.
             </p>
-
             <form id="uploadForm" onsubmit="handleUpload(event)">
-                <div class="grid md:grid-cols-2 gap-8 mb-8">
-                    <div class="upload-zone rounded-2xl p-12 text-center bg-purple-50 transition">
-                        <h3 class="text-2xl font-bold mb-3">Sınav Dosyası</h3>
+                <div class="grid md:grid-cols-2 gap-8 mb-10">
+                    <div class="upload-zone rounded-3xl p-12 text-center bg-slate-800/50 hover:bg-slate-800 transition">
+                        <h3 class="text-xl font-bold text-indigo-400 mb-4">Sınav Verileri</h3>
                         <input type="file" id="sinavFile" name="sinav" accept=".csv" class="hidden"
                             onchange="updateLabel(this, 'sinavStatus')" required>
                         <label for="sinavFile"
-                            class="btn-primary text-white px-8 py-4 rounded-full font-bold cursor-pointer inline-block transition">Dosya
+                            class="btn-primary text-white px-8 py-4 rounded-xl font-bold cursor-pointer inline-block transition">Dosya
                             Seç</label>
-                        <div id="sinavStatus" class="mt-4 font-semibold text-gray-600">Dosya seçilmedi</div>
+                        <div id="sinavStatus" class="mt-4 font-medium text-slate-500">Dosya seçilmedi</div>
                     </div>
-
-                    <div class="upload-zone rounded-2xl p-12 text-center bg-blue-50 transition">
-                        <h3 class="text-2xl font-bold mb-3">Karne Dosyası</h3>
+                    <div class="upload-zone rounded-3xl p-12 text-center bg-slate-800/50 hover:bg-slate-800 transition">
+                        <h3 class="text-xl font-bold text-indigo-400 mb-4">Karne Verileri</h3>
                         <input type="file" id="karneFile" name="karne" accept=".csv" class="hidden"
                             onchange="updateLabel(this, 'karneStatus')" required>
                         <label for="karneFile"
-                            class="btn-primary text-white px-8 py-4 rounded-full font-bold cursor-pointer inline-block transition">Dosya
+                            class="btn-primary text-white px-8 py-4 rounded-xl font-bold cursor-pointer inline-block transition">Dosya
                             Seç</label>
-                        <div id="karneStatus" class="mt-4 font-semibold text-gray-600">Dosya seçilmedi</div>
+                        <div id="karneStatus" class="mt-4 font-medium text-slate-500">Dosya seçilmedi</div>
                     </div>
                 </div>
-
                 <div id="analyzeBtn">
                     <button type="submit"
-                        class="w-full btn-primary text-white py-6 rounded-2xl font-bold text-xl shadow-2xl transition">Analizi
+                        class="w-full btn-primary text-white py-5 rounded-2xl font-black text-xl shadow-xl hover:shadow-indigo-500/20 transition-all">Analizi
                         Başlat</button>
                 </div>
             </form>
-
-            <div id="loading" class="hidden text-center py-8">
+            <div id="loading" class="hidden text-center py-12">
                 <div class="spinner"></div>
-                <p class="text-xl font-bold text-gray-700 mt-6">Sunucuda analiz ediliyor...</p>
+                <p class="text-xl font-bold text-indigo-400 mt-8 tracking-wide">Analiz Motoru Çalışıyor...</p>
+                <p class="text-slate-500 mt-2">İstatistikler hesaplanıyor, grafikler çiziliyor.</p>
             </div>
         </div>
     </div>
 
-    <!-- Results -->
-    <div id="results" class="max-w-7xl mx-auto px-6 py-20 hidden">
-        <div class="text-center mb-12">
-            <h2 class="text-5xl font-black text-gray-800 mb-4">Analiz Sonuçları</h2>
-            <div class="flex justify-center gap-4 mt-8">
+    <div id="results" class="max-w-7xl mx-auto px-6 py-24 hidden">
+        <div class="text-center mb-16">
+            <h2 class="text-5xl font-black text-white mb-6">Analiz Sonuçları</h2>
+            <div class="flex justify-center flex-wrap gap-4 mt-10">
                 <a id="downloadZipBtn" href="#"
-                    class="bg-green-600 text-white px-8 py-4 rounded-xl font-bold hover:bg-green-700 transition flex items-center gap-2">
+                    class="bg-indigo-600 text-white px-8 py-4 rounded-xl font-bold hover:bg-indigo-500 transition flex items-center gap-3">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
                     </svg>
-                    Tüm Sonuçları İndir (ZIP)
+                    Sonuçları ZIP İndir
                 </a>
                 <button onclick="cleanupAndReload()"
-                    class="bg-gray-500 text-white px-8 py-4 rounded-xl font-bold hover:bg-gray-600 transition">Temizle
-                    ve Çık</button>
+                    class="bg-slate-800 text-slate-300 border border-slate-700 px-8 py-4 rounded-xl font-bold hover:bg-slate-700 transition">Yeni
+                    Analiz Başlat</button>
             </div>
         </div>
-
-        <div class="bg-white rounded-2xl shadow-2xl overflow-hidden p-4">
-            <img id="resultImage" src="" alt="Analiz Grafiği" class="w-full h-auto">
+        <div class="bg-slate-900 rounded-3xl shadow-4xl overflow-hidden p-6 border border-slate-800">
+            <img id="resultImage" src="" alt="Analiz Grafiği" class="w-full h-auto rounded-xl">
         </div>
     </div>
 
-    <footer class="gradient-bg text-white py-12">
+    <footer class="bg-slate-950 border-t border-slate-900 text-slate-500 py-16">
         <div class="max-w-7xl mx-auto px-6 text-center">
-            <h3 class="text-3xl font-bold mb-2">OZTPBS</h3>
-            <p class="text-purple-200 mb-6">© 2026 | MIT License | Made with AAİHL (Powered by Python)</p>
-            <div class="flex justify-center gap-6">
-                <a href="https://github.com/ahmetakifabus/OZTPBS" target="_blank"
-                    class="flex items-center gap-2 hover:text-purple-300 transition-colors">
-                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                        <path
-                            d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-                    </svg>
-                    <span>GitHub</span>
-                </a>
-                <a href="https://drive.proton.me/urls/K6KTE46DZ0#81fCwCnmSJov" target="_blank"
-                    class="flex items-center gap-2 hover:text-purple-300 transition-colors">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z">
-                        </path>
-                    </svg>
-                    <span>Proton Drive</span>
-                </a>
+            <h3 class="text-2xl font-black text-white mb-4">OZTPBS</h3>
+            <p class="text-slate-500 mb-8 max-w-md mx-auto">Modern eğitim verileri analitik çözümü. Öğrenci başarısını
+                veriye dayalı yönetin.</p>
+            <div class="flex justify-center gap-6 mb-8">
+                <a href="#" class="hover:text-white transition">Hakkında</a>
+                <a href="#" class="hover:text-white transition">Kılavuz</a>
+                <a href="#" class="hover:text-white transition">İletişim</a>
             </div>
+            <p class="text-sm font-medium">© 2026 | MIT License | Made with AAİHL (Powered by Python)</p>
         </div>
     </footer>
 
@@ -226,7 +285,7 @@
 
         function updateLabel(input, statusId) {
             if (input.files && input.files[0]) {
-                document.getElementById(statusId).innerHTML = `<span class="text-green-600">✓ ${input.files[0].name}</span>`;
+                document.getElementById(statusId).innerHTML = `<span class="text-green-600">Ok: ${input.files[0].name}</span>`;
             }
         }
 
@@ -261,18 +320,22 @@
                 })
                 .catch(error => {
                     console.error('Error:', error);
-                    alert('Hata oluştu:\n' + error.message);
+                    alert('Hata olustu:\n' + error.message);
                     document.getElementById('loading').classList.add('hidden');
                     document.getElementById('analyzeBtn').classList.remove('hidden');
                 });
         }
 
         function cleanupAndReload() {
-            if (confirm("Tüm sonuçlar silinecek. Emin misiniz?")) {
+            if (confirm("Tum sonuclar silinecek. Emin misiniz?")) {
                 fetch('/cleanup', { method: 'POST' })
                     .then(() => window.location.reload());
             }
         }
+
+        window.addEventListener('beforeunload', function () {
+            navigator.sendBeacon('/cleanup');
+        });
     </script>
 </body>
 
