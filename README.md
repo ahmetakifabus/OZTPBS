@@ -26,8 +26,6 @@ Modern ve interaktif bir web uygulamasi ile ogrenci sinav ve karne notlari arasi
 - **Smooth Animasyonlar**: Akici kullanici deneyimi
 - **Dark Mode Hazir**: Koyu tema destegi
 
-## 🚀 Hizli Baslangic
-
 ## 📄 CSV Dosya Formati
 
 ### Sinav Dosyasi (sinav.csv)
