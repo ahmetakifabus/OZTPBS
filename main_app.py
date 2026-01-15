@@ -8,9 +8,9 @@ import matplotlib
 matplotlib.use('Agg')
 
 try:
-    from OZTPBS import SinavKarneAnaliz
+    from OZTPHS import SinavKarneAnaliz
 except ImportError:
-    print("Hata: OZTPBS.py bulunamadi.")
+    print("Hata: OZTPHS.py bulunamadi.")
     SinavKarneAnaliz = None
 
 app = Flask(__name__)
