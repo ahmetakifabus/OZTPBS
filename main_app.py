@@ -14,7 +14,8 @@ except ImportError:
     SinavKarneAnaliz = None
 
 app = Flask(__name__)
-UPLOAD_FOLDER = 'uploads'
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+UPLOAD_FOLDER = os.path.join(BASE_DIR, 'uploads')
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
@@ -92,11 +93,11 @@ class InitializedAnaliz(SinavKarneAnaliz):
         return str(grafik_dosya)
 
 def get_user_dir():
-    ip = request.remote_addr
+    ip = request.headers.get('X-Real-IP', request.remote_addr) or 'default'
     user_hash = hashlib.md5(ip.encode()).hexdigest()
     user_path = os.path.join(app.config['UPLOAD_FOLDER'], user_hash)
     if not os.path.exists(user_path):
-        os.makedirs(user_path)
+        os.makedirs(user_path, exist_ok=True)
     return user_path
 
 @app.route('/')

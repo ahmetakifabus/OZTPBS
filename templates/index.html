@@ -335,9 +335,7 @@
             }
         }
 
-        window.addEventListener('beforeunload', function () {
-            navigator.sendBeacon('/cleanup');
-        });
+        // Cleanup listener removed to prevent download failures
     </script>
 </body>
 

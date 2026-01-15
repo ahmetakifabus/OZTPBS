@@ -294,7 +294,7 @@ class SinavKarneAnaliz:
         detayli_dosya = Path(output_dir) / "detayli_sonuclar.csv"
         detayli_data = []
         
-        for _, row in self.veri.iterrows():
+        for i, row in self.veri.reset_index(drop=True).iterrows():
             for ders in self.DERSLER:
                 detayli_data.append({
                     'RUMUZ': row['RUMUZ'],
@@ -303,7 +303,7 @@ class SinavKarneAnaliz:
                     'Karne_T': row[f"{ders}_T_KARNE"],
                     'Tahmin_Basit': self.sonuclar[ders]['basit']['model'].predict(
                         [[row[f"{ders}_T_SINAV"]]])[0],
-                    'Tahmin_Coklu': self.sonuclar[ders]['coklu']['y_pred'][_]
+                    'Tahmin_Coklu': self.sonuclar[ders]['coklu']['y_pred'][i]
                 })
         
         pd.DataFrame(detayli_data).to_csv(detayli_dosya, index=False)
