@@ -38,6 +38,40 @@
             background-clip: text;
         }
 
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(4px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -113,7 +147,7 @@
             <h1 class="hero-title text-7xl font-black mb-6 tracking-tight">OZTPAS</h1>
             <p class="text-3xl text-indigo-200 mb-10 font-medium" style="animation: fadeInUp 1s ease-out 0.2s both;">
                 Öğrenci Z ve T Puanı Analiz Sistemi</p>
-            <button onclick="scrollToUpload()"
+            <button onclick="openModal()"
                 class="bg-emerald-500 text-white px-10 py-5 rounded-full font-extrabold text-xl shadow-lg shadow-emerald-900/20 hover:scale-110 transition-all duration-300"
                 style="animation: fadeInUp 1s ease-out 0.4s both;">Analize
                 Başla</button>
@@ -248,234 +282,237 @@
         </div>
     </div>
 
+
+    <!-- Upload Modal -->
     <div id="uploadModal" class="modal">
-        <div class="bg-slate-900 rounded-3xl shadow-3xl max-w-4xl w-full mx-4 p-10 border border-slate-800">
-            <!-- Upload Section -->
-            <div id="upload-section" class="max-w-4xl mx-auto px-6 py-24">
-                <div class="glass-panel rounded-3xl p-12">
-                    <h2 class="text-4xl font-black text-white mb-8 text-center">Dosyalarınızı Yükleyin</h2>
-                    <form id="uploadForm" enctype="multipart/form-data" class="space-y-8">
-                        <div class="space-y-6">
-                            <div>
-                                <label class="block text-lg font-bold text-white mb-3">Sınav Dosyası (CSV)</label>
-                                <input type="file" name="sinav" id="sinavFile" accept=".csv" required
-                                    onchange="updateLabel(this, 'sinavStatus')"
-                                    class="block w-full text-slate-300 file:mr-4 file:py-3 file:px-6 file:rounded-xl file:border-0 file:text-sm file:font-semibold file:bg-indigo-600 file:text-white hover:file:bg-indigo-500 file:cursor-pointer cursor-pointer bg-slate-800 rounded-xl border-2 border-slate-700 hover:border-indigo-500 transition">
-                                <p id="sinavStatus" class="mt-2 text-sm text-slate-400">CSV dosyanızı seçin</p>
-                            </div>
-                            <div>
-                                <label class="block text-lg font-bold text-white mb-3">Karne Dosyası (CSV)</label>
-                                <input type="file" name="karne" id="karneFile" accept=".csv" required
-                                    onchange="updateLabel(this, 'karneStatus')"
-                                    class="block w-full text-slate-300 file:mr-4 file:py-3 file:px-6 file:rounded-xl file:border-0 file:text-sm file:font-semibold file:bg-indigo-600 file:text-white hover:file:bg-indigo-500 file:cursor-pointer cursor-pointer bg-slate-800 rounded-xl border-2 border-slate-700 hover:border-indigo-500 transition">
-                                <p id="karneStatus" class="mt-2 text-sm text-slate-400">CSV dosyanızı seçin</p>
-                            </div>
-                        </div>
-                        <div id="analyzeBtn">
-                            <button type="submit"
-                                class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-5 rounded-2xl font-black text-xl shadow-xl hover:shadow-indigo-500/20 transition-all hover:scale-105">Analizi
-                                Başlat</button>
-                        </div>
-                    </form>
-                    <div id="loading" class="hidden text-center py-12">
-                        <div id="spinner"></div>
-                        <p class="text-xl font-bold text-indigo-400 mt-8 tracking-wide">Analiz Motoru Çalışıyor...</p>
-                        <p class="text-slate-500 mt-2">İstatistikler hesaplanıyor, grafikler çiziliyor.</p>
+        <div class="max-w-4xl mx-auto bg-slate-900 rounded-3xl shadow-4xl p-12 relative border border-slate-800 m-4">
+            <button onclick="closeModal()" class="absolute top-6 right-6 text-slate-500 hover:text-white text-3xl">
+                ×
+            </button>
+            <h2 class="text-4xl font-black text-white mb-8 text-center">Dosyalarınızı Yükleyin</h2>
+            <form id="uploadForm" onsubmit="handleUpload(event)" enctype="multipart/form-data" class="space-y-8">
+                <div class="space-y-6">
+                    <div>
+                        <label class="block text-lg font-bold text-white mb-3">Sınav Dosyası (CSV)</label>
+                        <input type="file" name="sinav" id="sinavFile" accept=".csv" required
+                            onchange="updateLabel(this, 'sinavStatus')"
+                            class="block w-full text-slate-300 file:mr-4 file:py-3 file:px-6 file:rounded-xl file:border-0 file:text-sm file:font-semibold file:bg-indigo-600 file:text-white hover:file:bg-indigo-500 file:cursor-pointer cursor-pointer bg-slate-800 rounded-xl border-2 border-slate-700 hover:border-indigo-500 transition">
+                        <p id="sinavStatus" class="mt-2 text-sm text-slate-400">CSV dosyanızı seçin</p>
+                    </div>
+                    <div>
+                        <label class="block text-lg font-bold text-white mb-3">Karne Dosyası (CSV)</label>
+                        <input type="file" name="karne" id="karneFile" accept=".csv" required
+                            onchange="updateLabel(this, 'karneStatus')"
+                            class="block w-full text-slate-300 file:mr-4 file:py-3 file:px-6 file:rounded-xl file:border-0 file:text-sm file:font-semibold file:bg-indigo-600 file:text-white hover:file:bg-indigo-500 file:cursor-pointer cursor-pointer bg-slate-800 rounded-xl border-2 border-slate-700 hover:border-indigo-500 transition">
+                        <p id="karneStatus" class="mt-2 text-sm text-slate-400">CSV dosyanızı seçin</p>
                     </div>
                 </div>
+                <div id="analyzeBtn">
+                    <button type="submit"
+                        class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-5 rounded-2xl font-black text-xl shadow-xl hover:shadow-indigo-500/20 transition-all hover:scale-105">Analizi
+                        Başlat</button>
+                </div>
+            </form>
+            <div id="loading" class="hidden text-center py-12">
+                <div id="spinner" style="display: block; margin: 0 auto;"></div>
+                <p class="text-xl font-bold text-indigo-400 mt-8 tracking-wide">Analiz Motoru Çalışıyor...</p>
+                <p class="text-slate-500 mt-2">İstatistikler hesaplanıyor, grafikler çiziliyor.</p>
             </div>
+        </div>
+    </div>
 
-            <div id="results" class="max-w-7xl mx-auto px-6 py-24 hidden">
-                <div class="text-center mb-16">
-                    <h2 class="text-5xl font-black text-white mb-6">Analiz Sonuçları</h2>
-                    <div class="flex justify-center flex-wrap gap-4 mt-10">
-                        <a id="downloadZipBtn" href="#"
-                            class="bg-indigo-600 text-white px-8 py-4 rounded-xl font-bold hover:bg-indigo-500 transition flex items-center gap-3">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
-                            </svg>
-                            Sonuçları ZIP İndir
-                        </a>
-                        <button onclick="cleanupAndReload()"
-                            class="bg-slate-800 text-slate-300 border border-slate-700 px-8 py-4 rounded-xl font-bold hover:bg-slate-700 transition">Yeni
-                            Analiz Başlat</button>
-                    </div>
-                </div>
-                <div class="bg-slate-900 rounded-3xl shadow-4xl overflow-hidden p-6 border border-slate-800">
-                    <img id="resultImage" src="" alt="Analiz Grafiği" class="w-full h-auto rounded-xl">
-                </div>
+    <div id="results" class="max-w-7xl mx-auto px-6 py-24 hidden">
+        <div class="text-center mb-16">
+            <h2 class="text-5xl font-black text-white mb-6">Analiz Sonuçları</h2>
+            <div class="flex justify-center flex-wrap gap-4 mt-10">
+                <a id="downloadZipBtn" href="#"
+                    class="bg-indigo-600 text-white px-8 py-4 rounded-xl font-bold hover:bg-indigo-500 transition flex items-center gap-3">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                    </svg>
+                    Sonuçları ZIP İndir
+                </a>
+                <button onclick="cleanupAndReload()"
+                    class="bg-slate-800 text-slate-300 border border-slate-700 px-8 py-4 rounded-xl font-bold hover:bg-slate-700 transition">Yeni
+                    Analiz Başlat</button>
             </div>
+        </div>
+        <div class="bg-slate-900 rounded-3xl shadow-4xl overflow-hidden p-6 border border-slate-800">
+            <img id="resultImage" src="" alt="Analiz Grafiği" class="w-full h-auto rounded-xl">
+        </div>
+    </div>
 
-            <footer class="bg-slate-950 border-t border-slate-900 text-slate-500 py-16">
-                <div class="max-w-7xl mx-auto px-6 text-center">
-                    <h3 class="text-2xl font-black text-white mb-4">OZTPAS</h3>
-                    <p class="text-slate-500 mb-8 max-w-md mx-auto">Modern eğitim verileri analitik çözümü. Öğrenci
-                        başarısını
-                        veriye dayalı yönetin.</p>
-                    <div class="flex justify-center gap-6 mb-8">
-                        <a href="#" class="hover:text-white transition">Hakkında</a>
-                        <a href="#" class="hover:text-white transition">Kılavuz</a>
-                        <a href="#" class="hover:text-white transition">İletişim</a>
-                    </div>
-                    <p class="text-sm font-medium">© 2026 | MIT License | Made with ❤️</p>
-                </div>
-            </footer>
+    <footer class="bg-slate-950 border-t border-slate-900 text-slate-500 py-16">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h3 class="text-2xl font-black text-white mb-4">OZTPAS</h3>
+            <p class="text-slate-500 mb-8 max-w-md mx-auto">Modern eğitim verileri analitik çözümü. Öğrenci
+                başarısını
+                veriye dayalı yönetin.</p>
+            <div class="flex justify-center gap-6 mb-8">
+                <a href="#" class="hover:text-white transition">Hakkında</a>
+                <a href="#" class="hover:text-white transition">Kılavuz</a>
+                <a href="#" class="hover:text-white transition">İletişim</a>
+            </div>
+            <p class="text-sm font-medium">© 2026 | MIT License | Made with ❤️</p>
+        </div>
+    </footer>
 
-            <script>
-                function scrollToUpload() {
-                    document.getElementById('upload-section').scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'center'
-                    });
-                }
+    <script>
+        function openModal() {
+            document.getElementById('uploadModal').classList.add('active');
+        }
 
-                function updateLabel(input, statusId) {
-                    if (input.files && input.files[0]) {
-                        document.getElementById(statusId).innerHTML = `<span class="text-green-600">Ok: ${input.files[0].name}</span>`;
-                    }
-                }
+        function closeModal() {
+            document.getElementById('uploadModal').classList.remove('active');
+        }
 
-                function handleUpload(e) {
-                    e.preventDefault();
-                    const form = document.getElementById('uploadForm');
-                    const data = new FormData(form);
+        function updateLabel(input, statusId) {
+            if (input.files && input.files[0]) {
+                document.getElementById(statusId).innerHTML = `<span class="text-green-600">Ok: ${input.files[0].name}</span>`;
+            }
+        }
 
-                    document.getElementById('analyzeBtn').classList.add('hidden');
-                    document.getElementById('loading').classList.remove('hidden');
+        function handleUpload(e) {
+            e.preventDefault();
+            const form = document.getElementById('uploadForm');
+            const data = new FormData(form);
 
-                    fetch('/upload', {
-                        method: 'POST',
-                        body: data
-                    })
-                        .then(response => response.json())
-                        .then(data => {
-                            if (data.error) {
-                                throw new Error(data.error);
-                            }
+            document.getElementById('analyzeBtn').classList.add('hidden');
+            document.getElementById('loading').classList.remove('hidden');
 
-                            document.getElementById('loading').classList.add('hidden');
-                            closeModal();
-
-                            const img = document.getElementById('resultImage');
-                            img.src = data.image_url;
-
-                            document.getElementById('downloadZipBtn').href = '/download_zip';
-
-                            document.getElementById('results').classList.remove('hidden');
-                            document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
-                        })
-                        .catch(error => {
-                            console.error('Error:', error);
-                            alert('Hata olustu:\n' + error.message);
-                            document.getElementById('loading').classList.add('hidden');
-                            document.getElementById('analyzeBtn').classList.remove('hidden');
-                        });
-                }
-
-                function cleanupAndReload() {
-                    if (confirm("Tum sonuclar silinecek. Emin misiniz?")) {
-                        fetch('/cleanup', { method: 'POST' })
-                            .then(() => window.location.reload());
-                    }
-                }
-
-                // Particle Animation System
-                function initParticles() {
-                    const canvas = document.getElementById('particles-canvas');
-                    if (!canvas) return;
-
-                    const ctx = canvas.getContext('2d');
-                    canvas.width = canvas.offsetWidth;
-                    canvas.height = canvas.offsetHeight;
-
-                    const particles = [];
-                    const particleCount = 50;
-
-                    class Particle {
-                        constructor() {
-                            this.x = Math.random() * canvas.width;
-                            this.y = Math.random() * canvas.height;
-                            this.size = Math.random() * 3 + 1;
-                            this.speedX = Math.random() * 0.5 - 0.25;
-                            this.speedY = Math.random() * 0.5 - 0.25;
-                            this.opacity = Math.random() * 0.5 + 0.2;
-                        }
-
-                        update() {
-                            this.x += this.speedX;
-                            this.y += this.speedY;
-
-                            if (this.x > canvas.width) this.x = 0;
-                            if (this.x < 0) this.x = canvas.width;
-                            if (this.y > canvas.height) this.y = 0;
-                            if (this.y < 0) this.y = canvas.height;
-                        }
-
-                        draw() {
-                            ctx.fillStyle = `rgba(139, 92, 246, ${this.opacity})`;
-                            ctx.beginPath();
-                            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                            ctx.fill();
-                        }
+            fetch('/upload', {
+                method: 'POST',
+                body: data
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        throw new Error(data.error);
                     }
 
-                    for (let i = 0; i < particleCount; i++) {
-                        particles.push(new Particle());
-                    }
+                    document.getElementById('loading').classList.add('hidden');
+                    closeModal();
 
-                    function animate() {
-                        ctx.clearRect(0, 0, canvas.width, canvas.height);
-                        particles.forEach(particle => {
-                            particle.update();
-                            particle.draw();
-                        });
-                        requestAnimationFrame(animate);
-                    }
+                    const img = document.getElementById('resultImage');
+                    img.src = data.image_url;
 
-                    animate();
+                    document.getElementById('downloadZipBtn').href = '/download_zip';
 
-                    window.addEventListener('resize', () => {
-                        canvas.width = canvas.offsetWidth;
-                        canvas.height = canvas.offsetHeight;
-                    });
-                }
-
-                // Animated Counter
-                function animateCounter(id, target, suffix = '') {
-                    const element = document.getElementById(id);
-                    if (!element) return;
-
-                    const duration = 2000;
-                    const start = 0;
-                    const increment = target / (duration / 16);
-                    let current = start;
-
-                    const timer = setInterval(() => {
-                        current += increment;
-                        if (current >= target) {
-                            current = target;
-                            clearInterval(timer);
-                        }
-                        element.textContent = Math.floor(current) + suffix;
-                    }, 16);
-                }
-
-                // Initialize on page load
-                window.addEventListener('DOMContentLoaded', () => {
-                    initParticles();
-
-                    // Animate statistics
-                    setTimeout(() => {
-                        animateCounter('stat-analyses', 6);
-                        animateCounter('stat-metrics', 15);
-                        animateCounter('stat-accuracy', 95, '%');
-                        animateCounter('stat-speed', 3, 's');
-                    }, 500);
+                    document.getElementById('results').classList.remove('hidden');
+                    document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Hata olustu:\n' + error.message);
+                    document.getElementById('loading').classList.add('hidden');
+                    document.getElementById('analyzeBtn').classList.remove('hidden');
                 });
+        }
 
-                // Cleanup listener removed to prevent download failures 
-            </script>
+        function cleanupAndReload() {
+            if (confirm("Tum sonuclar silinecek. Emin misiniz?")) {
+                fetch('/cleanup', { method: 'POST' })
+                    .then(() => window.location.reload());
+            }
+        }
+
+        // Particle Animation System
+        function initParticles() {
+            const canvas = document.getElementById('particles-canvas');
+            if (!canvas) return;
+
+            const ctx = canvas.getContext('2d');
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+
+            const particles = [];
+            const particleCount = 50;
+
+            class Particle {
+                constructor() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.size = Math.random() * 3 + 1;
+                    this.speedX = Math.random() * 0.5 - 0.25;
+                    this.speedY = Math.random() * 0.5 - 0.25;
+                    this.opacity = Math.random() * 0.5 + 0.2;
+                }
+
+                update() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+
+                    if (this.x > canvas.width) this.x = 0;
+                    if (this.x < 0) this.x = canvas.width;
+                    if (this.y > canvas.height) this.y = 0;
+                    if (this.y < 0) this.y = canvas.height;
+                }
+
+                draw() {
+                    ctx.fillStyle = `rgba(139, 92, 246, ${this.opacity})`;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach(particle => {
+                    particle.update();
+                    particle.draw();
+                });
+                requestAnimationFrame(animate);
+            }
+
+            animate();
+
+            window.addEventListener('resize', () => {
+                canvas.width = canvas.offsetWidth;
+                canvas.height = canvas.offsetHeight;
+            });
+        }
+
+        // Animated Counter
+        function animateCounter(id, target, suffix = '') {
+            const element = document.getElementById(id);
+            if (!element) return;
+
+            const duration = 2000;
+            const start = 0;
+            const increment = target / (duration / 16);
+            let current = start;
+
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                element.textContent = Math.floor(current) + suffix;
+            }, 16);
+        }
+
+        // Initialize on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            initParticles();
+
+            // Animate statistics
+            setTimeout(() => {
+                animateCounter('stat-analyses', 6);
+                animateCounter('stat-metrics', 15);
+                animateCounter('stat-accuracy', 95, '%');
+                animateCounter('stat-speed', 3, 's');
+            }, 500);
+        });
+
+        // Cleanup listener removed to prevent download failures 
+    </script>
 </body>
 
 </html>
