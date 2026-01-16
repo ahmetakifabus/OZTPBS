@@ -125,20 +125,34 @@ def upload_files():
     try:
         analiz = InitializedAnaliz(sinav_path, karne_path)
         if not analiz.veri_yukle():
-             return jsonify({'error': 'Veri yukleme basarisiz.'}), 500
+            return jsonify({'error': 'Veri yukleme basarisiz.'}), 500
         
         analiz.t_puanlarini_ekle()
         analiz.verileri_birlestir()
         analiz.analiz_yap()
         
-        img_path = analiz.grafik_olustur(user_path)
+        korelasyon = analiz.korelasyon_matrisi_hesapla()
+        yuzdelikler = analiz.yuzdelik_hesapla()
+        aykiri_degerler = analiz.aykiri_deger_bul()
+        performans = analiz.performans_indeksi_hesapla()
+        
+        grafik_dosya = analiz.grafik_olustur(user_path)
         analiz.rapor_olustur(user_path)
+        
+        korelasyon_data = {
+            "sinav": korelasyon["sinav"].to_dict(),
+            "karne": korelasyon["karne"].to_dict()
+        }
         
         return jsonify({
             'status': 'success',
             'image_url': f'/results/regresyon_analizi.png?t={uuid.uuid4()}',
             'csv_url': f'/results/regresyon_karsilastirma.csv?t={uuid.uuid4()}',
-            'detail_url': f'/results/detayli_sonuclar.csv?t={uuid.uuid4()}'
+            'detail_url': f'/results/detayli_sonuclar.csv?t={uuid.uuid4()}',
+            'korelasyon': korelasyon_data,
+            'aykiri_deger_sayisi': len(aykiri_degerler),
+            'performans': performans,
+            'ogrenci_sayisi': len(analiz.veri)
         })
         
     except Exception as e:

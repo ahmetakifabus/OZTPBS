@@ -121,6 +121,87 @@ class SinavKarneAnaliz:
             "intercept": model.intercept_
         }
     
+    def korelasyon_matrisi_hesapla(self):
+        print("\nKorelasyon matrisi hesaplaniyor...")
+        
+        sinav_cols = [f"{d}_T_SINAV" for d in self.DERSLER]
+        karne_cols = [f"{d}_T_KARNE" for d in self.DERSLER]
+        
+        sinav_corr = self.veri[sinav_cols].corr()
+        karne_corr = self.veri[karne_cols].corr()
+        
+        return {
+            "sinav": sinav_corr,
+            "karne": karne_corr
+        }
+    
+    def yuzdelik_hesapla(self):
+        print("\nYuzdelik siralamalari hesaplaniyor...")
+        
+        percentiles = {}
+        
+        for ders in self.DERSLER:
+            sinav_col = f"{ders}_T_SINAV"
+            karne_col = f"{ders}_T_KARNE"
+            
+            self.veri[f"{ders}_SINAV_YUZDELIK"] = self.veri[sinav_col].rank(pct=True) * 100
+            self.veri[f"{ders}_KARNE_YUZDELIK"] = self.veri[karne_col].rank(pct=True) * 100
+            
+            percentiles[ders] = {
+                "sinav": self.veri[f"{ders}_SINAV_YUZDELIK"].to_dict(),
+                "karne": self.veri[f"{ders}_KARNE_YUZDELIK"].to_dict()
+            }
+        
+        return percentiles
+    
+    def aykiri_deger_bul(self, threshold=2.5):
+        print(f"\nAykiri degerler tespit ediliyor (esik: {threshold} std)...")
+        
+        outliers = []
+        
+        for ders in self.DERSLER:
+            sinav_col = f"{ders}_T_SINAV"
+            karne_col = f"{ders}_T_KARNE"
+            
+            sinav_mean = self.veri[sinav_col].mean()
+            sinav_std = self.veri[sinav_col].std()
+            karne_mean = self.veri[karne_col].mean()
+            karne_std = self.veri[karne_col].std()
+            
+            for idx, row in self.veri.iterrows():
+                sinav_z = abs((row[sinav_col] - sinav_mean) / sinav_std)
+                karne_z = abs((row[karne_col] - karne_mean) / karne_std)
+                
+                if sinav_z > threshold or karne_z > threshold:
+                    outliers.append({
+                        "rumuz": row["RUMUZ"],
+                        "ders": ders,
+                        "sinav_z": sinav_z,
+                        "karne_z": karne_z,
+                        "sinav_deger": row[sinav_col],
+                        "karne_deger": row[karne_col]
+                    })
+        
+        print(f"{len(outliers)} aykiri deger tespit edildi")
+        return outliers
+    
+    def performans_indeksi_hesapla(self):
+        print("\nPerformans indeksi hesaplaniyor...")
+        
+        for idx, row in self.veri.iterrows():
+            sinav_ortalama = np.mean([row[f"{d}_T_SINAV"] for d in self.DERSLER])
+            karne_ortalama = np.mean([row[f"{d}_T_KARNE"] for d in self.DERSLER])
+            
+            self.veri.loc[idx, "SINAV_INDEKS"] = sinav_ortalama
+            self.veri.loc[idx, "KARNE_INDEKS"] = karne_ortalama
+            self.veri.loc[idx, "GELISIM_FARKI"] = karne_ortalama - sinav_ortalama
+        
+        return {
+            "ortalama_sinav": self.veri["SINAV_INDEKS"].mean(),
+            "ortalama_karne": self.veri["KARNE_INDEKS"].mean(),
+            "ortalama_gelisim": self.veri["GELISIM_FARKI"].mean()
+        }
+    
     def analiz_yap(self):
         print("\nAnalizler yapiliyor...\n")
         
